@@ -1,10 +1,12 @@
 import { Store, createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { gameReducer } from "./game/gameReducer";
+import { selectionsReducer } from "./game/selectionsReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
-// tslint:disable-next-line: typedef
+import { activeScoreTableReducer } from "./settings/activeScoreTableReducer";
+
 export const rootReducers = {
-  game: gameReducer 
+  activeScoreTable: activeScoreTableReducer,
+  selections: selectionsReducer
 };
 
 export type IMainStoreState = { [k in keyof (typeof rootReducers)]: ReturnType<(typeof rootReducers)[k]> };

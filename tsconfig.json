@@ -15,13 +15,14 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
     "typeRoots": [
       "./src/types/",
       "./node_modules/@types"
-    ]
+    ],
+    "isolatedModules": true,
+    "baseUrl": "src"
   },
   "include": [
     "src"
