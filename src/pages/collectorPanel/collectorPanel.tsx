@@ -21,8 +21,9 @@ const styles = {
 };
 
 const ItemBlock = styled("div")({
-    "padding": 15,
-    "margin": 15,
+    "padding": 25,
+    "marginRight": 25,
+    "marginTop": 25,
     "fontSize": 32,
     "userSelect": "none",
     "&:hover": {
@@ -39,7 +40,7 @@ export class CollectorPanelClass extends React.Component<AllProps, {}>{
         return (
             <Panel css={styles.panel}>
                 <PanelHeader css={styles.panelHeader}>
-                    Kahoow! Points
+                    Kahoow! Points.
                 </PanelHeader>
                 <PanelBody css={styles.panelBody}>
                     <h1>Items</h1>

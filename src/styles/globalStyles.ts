@@ -10,6 +10,8 @@ export const globalStyles = [
         },
         "body, html": {
             height: "100%",
+            minHeight: 300,
+            minWidth: 500,
             fontSize: 14,
             color: "white",
             fontFamily: "'Montserrat', sans-serif",
