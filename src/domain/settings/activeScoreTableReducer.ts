@@ -1,6 +1,12 @@
 import { ScoreTable } from "types/gameTypes";
 import { Reducer } from "redux";
 
+/* 
+    Over engineering warning!
+    This static config data is put into a reducer 
+    with the assumption that it changes overtime and can therefor be loaded
+    dynamically in the next version. 
+*/
 const defaultActiveScoreTableState: ScoreTable = {
     bonus: {
         A: { count: 3, value: 200 },
@@ -14,6 +20,7 @@ const defaultActiveScoreTableState: ScoreTable = {
     }
 };
 
-export const activeScoreTableReducer: Reducer<ScoreTable> = (state = defaultActiveScoreTableState) => {
-    return state;
-};
+export const activeScoreTableReducer: Reducer<ScoreTable>
+    = (state = defaultActiveScoreTableState) => {
+        return state;
+    };

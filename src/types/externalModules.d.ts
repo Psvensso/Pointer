@@ -1,3 +1,7 @@
+/* ExternalModules
+ * Modules that don't have it's own .d.ts file
+ */
+
 declare module 'emotion-reset';
 
 declare module '@emotion/styled/macro' {

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import * as React from "react";
 import { jsx, css } from "@emotion/core";
-import { provide } from "../../domain/provide";
-import { gameActions } from "../../domain/game/gameActions";
-import { Panel, PanelHeader, PanelBody } from "components/panel";
+import { provide } from "../../../domain/provide";
+import { gameActions } from "../../../domain/game/gameActions";
+import { Panel, PanelHeader, PanelBody } from "components/global/panel";
 import { calculateScore } from "utils/pointsCalculator";
 import { ScoreList } from "./subComponents/scoreList";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 const styles = {
     header: css({ backgroundColor: "rgb(5, 66, 185)" }),

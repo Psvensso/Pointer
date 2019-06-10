@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, css } from "@emotion/core";
-import { provide } from "../../domain/provide";
-import { gameActions } from "../../domain/game/gameActions";
-import { Panel, PanelHeader, PanelBody } from "components/panel";
-import styled from "@emotion/styled";
+import { provide } from "../../../domain/provide";
+import { gameActions } from "../../../domain/game/gameActions";
+import { Panel, PanelHeader, PanelBody } from "components/global/panel";
+import styled from "@emotion/styled/macro";
 import { ItemName, GameItems } from "types/gameTypes";
 
 const styles = {

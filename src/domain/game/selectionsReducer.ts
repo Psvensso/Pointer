@@ -2,11 +2,7 @@ import { Reducer } from "redux";
 import { GameActions } from "./gameActions";
 import { ItemMap } from "types/gameTypes";
 
-const defaultState: ItemMap<number> = {
-    A: 1,
-    B: 5,
-    C: 3
-};
+const defaultState: ItemMap<number> = {};
 
 export const selectionsReducer: Reducer<ItemMap<number>, GameActions>
     = (state = defaultState, action) => {

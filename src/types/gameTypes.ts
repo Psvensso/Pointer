@@ -1,3 +1,7 @@
+/**
+ * GameItems
+ * All possible items and their settings
+ */
 export const GameItems = {
     A: { color: "hsl(135,100%,40%)" },
     B: { color: "hsl(60,100%,40%)" },
@@ -28,6 +32,7 @@ export const GameItems = {
 
 export type ItemName = keyof typeof GameItems;
 export type ItemMap<T> = { [key in ItemName]?: T };
+
 /** BonusRule
  * How much are each bonus worth
  * count: How many items are needed before a bonus is added

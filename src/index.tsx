@@ -1,16 +1,22 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./pages/App";
 import { Provider } from "react-redux";
-import * as serviceWorker from "./utils/serviceWorker";
 import { getStore } from "./domain/store";
+import { Global } from "@emotion/core";
+import { CollectorPanel } from "components/layout/collectorPanel/collectorPanel";
+import { ScorePanel } from "components/layout/scorePanel/scorePanel";
+import { globalStyles } from "styles/globalStyles";
 
 const store = getStore();
-
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("root"));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ 
+ReactDOM.render(
+    <Provider store={store}>
+        <div css={css({ height: "100%", display: "flex" })}>
+            <Global styles={globalStyles} />
+            <CollectorPanel />
+            <ScorePanel />
+        </div>
+    </Provider>,
+    document.getElementById("root")
+);

@@ -1,8 +1,14 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import { CalculateScoreResult } from "utils/pointsCalculator";
-import { ScoreListItem, ScoreListItemProps } from "./scoreListItem";
+import { ScoreListItem } from "./scoreListItem";
 import { ItemName, GameItems } from "types/gameTypes";
+
+type ScoreListProps = {
+    results: CalculateScoreResult;
+    selections: MapLike<number>;
+    className?: string;
+};
 
 const ScoreListWrapper = styled("div")({
     flex: 1,
@@ -28,24 +34,19 @@ const ScoreListBody = styled("div")({
     overflowY: "auto"
 });
 
-type ScoreListProps = {
-    results: CalculateScoreResult;
-    selections: MapLike<number>;
-    className?: string;
-};
-
 export const ScoreList = (p: ScoreListProps) => {
     const { className, results, selections } = p;
+    const { itemScores: scores } = results;
 
-    const items = Object.keys(results.itemScores).map<ScoreListItemProps>((key, i) => {
-        return {
-            key,
-            count: selections[key as ItemName],
-            name: key,
-            color: GameItems[key as ItemName].color,
-            ...results.itemScores[key]
-        };
-    }).sort((a, b) => b.score - a.score);
+    const items = Object.keys(scores)
+        .sort((a, b) => scores[b].score - scores[a].score)
+        .map((key) => (<ScoreListItem
+            key={key}
+            count={selections[key]}
+            name={key}
+            color={GameItems[key as ItemName].color}
+            {...scores[key]}
+        />));
 
     return (
         <ScoreListWrapper className={className}>
@@ -55,9 +56,7 @@ export const ScoreList = (p: ScoreListProps) => {
                 <div>Score</div>
             </ScoreListHeader>
             <ScoreListBody>
-                {items.map((props) => (
-                    <ScoreListItem {...props} />
-                ))}
+                {items}
             </ScoreListBody>
         </ScoreListWrapper>
     );
