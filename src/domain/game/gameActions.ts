@@ -1,4 +1,5 @@
 import { IAppThunkAction } from "../store";
+import { ItemName } from "types/gameTypes";
 
 interface IResetGameAction {
     type: "GAME_ACTION:RESET_STATE";
@@ -7,7 +8,7 @@ interface IResetGameAction {
 interface ISelectItemGameAction {
     type: "GAME_ACTION:SELECT_ITEM";
     payload: {
-        itemKey: string;
+        itemKey: ItemName;
     };
 }
 

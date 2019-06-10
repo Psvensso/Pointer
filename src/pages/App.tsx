@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <CollectorPanel />
       <ScorePanel />
     </div>
-  ); 
+  );
 };
 
 export default App;

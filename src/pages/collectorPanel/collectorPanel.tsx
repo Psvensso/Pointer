@@ -5,11 +5,29 @@ import { provide } from "../../domain/provide";
 import { gameActions } from "../../domain/game/gameActions";
 import { Panel, PanelHeader, PanelBody } from "components/panel";
 import styled from "@emotion/styled";
+import { ItemName, GameItems } from "types/gameTypes";
+
+const styles = {
+    panel: css({ flex: 1 }),
+    panelHeader: css({
+        textTransform: "none",
+        backgroundColor: "#25076B"
+    }),
+    panelBody: css({
+        padding: 15,
+        backgroundColor: "#46178F",
+        overflowY: "auto"
+    })
+};
 
 const ItemBlock = styled("div")({
-    padding: 15,
-    margin: 15,
-    backgroundColor: "red"
+    "padding": 15,
+    "margin": 15,
+    "fontSize": 32,
+    "userSelect": "none",
+    "&:hover": {
+        cursor: "pointer"
+    }
 });
 
 export class CollectorPanelClass extends React.Component<AllProps, {}>{
@@ -17,17 +35,20 @@ export class CollectorPanelClass extends React.Component<AllProps, {}>{
     render() {
         const { selectItem, activeScoreTable } = this.props;
         const regularItems = activeScoreTable.regular;
-
+        const itemKeys = Object.keys(regularItems) as ItemName[];
         return (
-            <Panel css={css({ flex: 1 })}>
-                <PanelHeader css={css({ backgroundColor: "#25076B" })}>
+            <Panel css={styles.panel}>
+                <PanelHeader css={styles.panelHeader}>
                     Kahoow! Points
                 </PanelHeader>
-                <PanelBody css={css({ backgroundColor: "#46178F" })}>
+                <PanelBody css={styles.panelBody}>
                     <h1>Items</h1>
                     <div css={{ display: "flex", flexWrap: "wrap" }}>
-                        {Object.keys(regularItems).map((itemKey) => (
+                        {itemKeys.map((itemKey) => (
                             <ItemBlock
+                                css={css({
+                                    backgroundColor: GameItems[itemKey].color
+                                })}
                                 key={itemKey}
                                 onClick={() => {
                                     selectItem({

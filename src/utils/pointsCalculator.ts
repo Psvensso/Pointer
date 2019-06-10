@@ -1,37 +1,41 @@
-import { ScoreTable, ItemScore } from "types/gameTypes";
+import { ScoreTable, ItemName } from "types/gameTypes";
 
 type CalculateScoreProps = {
     selections: MapLike<number>;
     scoreTable: ScoreTable;
 };
 
-type CalculateScoreResult = {
+export type CalculateScoreResult = {
     totalScore: number;
     totalBonus: number;
-    itemScores: MapLike<ItemScore>
+    itemScores: MapLike<{
+        score: number;
+        bonus: number;
+    }>
 };
 
 export function calculateScore({ selections: s, scoreTable }: CalculateScoreProps) {
 
-    return Object.keys(s).reduce<CalculateScoreResult>((results, itemKey) => {
+    return Object.keys(s).reduce<CalculateScoreResult>((results, k) => {
+        const itemKey = k as ItemName;
         const itemCount = s[itemKey];
-        results.itemScores[itemKey] = { score: 0, bonus: 0 };
+        let score = 0;
+        let bonus = 0;
 
         //Calculate regular value
-        const value = scoreTable.regular[itemKey];
-        const score = itemCount * value;
-        results.itemScores[itemKey].score = score;
+        const value = scoreTable.regular[itemKey] || 0;
+        score = itemCount * value;
         results.totalScore += score;
 
-        if (!scoreTable.bonus[itemKey]) {
-            return results;
+        const bonusRule = scoreTable.bonus[itemKey];
+        if (!!bonusRule) {
+            //Calculate bonus scores
+            const { value: bonusValue, count: noRequiredForBonus } = bonusRule;
+            bonus = Math.floor(itemCount / noRequiredForBonus) * bonusValue;
+            results.totalBonus += bonus;
         }
 
-        //Calculate bonus scores
-        const { value: bonusValue, count: noRequiredForBonus } = scoreTable.bonus[itemKey];
-        const bonusScore = Math.floor(itemCount / noRequiredForBonus) * bonusValue;
-        results.totalBonus += bonusScore;
-        results.itemScores[itemKey].bonus = bonusScore;
+        results.itemScores[itemKey] = { score, bonus };
 
         return results;
     }, { totalScore: 0, totalBonus: 0, itemScores: {} });

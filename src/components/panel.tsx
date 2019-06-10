@@ -11,7 +11,5 @@ export const PanelHeader = styled("div")({
 });
 
 export const PanelBody = styled("div")({
-    flex: 1,
-    padding: 15
+    flex: 1
 });
-
