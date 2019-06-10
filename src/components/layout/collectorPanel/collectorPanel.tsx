@@ -34,9 +34,9 @@ const ItemBlock = styled("div")({
 export class CollectorPanelClass extends React.Component<AllProps, {}>{
 
     render() {
-        const { selectItem, activeScoreTable } = this.props;
-        const regularItems = activeScoreTable.regular;
-        const itemKeys = Object.keys(regularItems) as ItemName[];
+        const { selectItem, scoreTable } = this.props;
+        const itemKeys = Object.keys(scoreTable.regular) as ItemName[];
+        
         return (
             <Panel css={styles.panel}>
                 <PanelHeader css={styles.panelHeader}>
@@ -68,7 +68,7 @@ export class CollectorPanelClass extends React.Component<AllProps, {}>{
 }
 
 const provider = provide((state) => (
-    { activeScoreTable: state.activeScoreTable }),
+    { scoreTable: state.activeScoreTable }),
     { ...gameActions }
 ).withExternalProps<{ className?: string; }>();
 type AllProps = typeof provider.allProps;
