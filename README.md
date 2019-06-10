@@ -1,5 +1,10 @@
 ## React demo app
 
+## Notes
+Please note that im aware that this is a heavily over-engineered application. This could have easily been built without Redux but it's set up to be an example of how to use Redux. The State could have easily lived in the index.tsx (in a parent App layout component) and passed down Create new game prop and the selected items. 
+
+The usage of styling (Emotion) in this application is not concise and should not be used as an example. It's more used as a proof-of-concept code, in fact the use of Emotion in this simple example is probably over-engineering as well, a simple css would have worked just fine but again it's an example for how to use Emotion. In a bigger application one would probably consider Emotion Themes and other more "re-usable" Emotion features so it scales better. 
+
 ### Styling
 The app uses [Emotion js](https://github.com/emotion-js/emotion) for styling.
 
